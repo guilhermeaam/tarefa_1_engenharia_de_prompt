@@ -1,0 +1,98 @@
+{
+  "info": {
+    "name": "Sistema Autoatendimento",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Identificação do cliente via CPF",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:5000/identificacao",
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"cpf\": \"12345678901\" }"
+        }
+      }
+    },
+    {
+      "name": "Cadastro de novo cliente",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:5000/identificacao",
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"nome\": \"João Silva\", \"email\": \"joao@email.com\" }"
+        }
+      }
+    },
+    {
+      "name": "Obter lista de produtos disponíveis",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:5000/produtos"
+      }
+    },
+    {
+      "name": "Criar um novo pedido",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:5000/pedido",
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"itens\": [ {\"id\": 1, \"nome\": \"Hambúrguer\", \"preco\": 15.0}, {\"id\": 5, \"nome\": \"Refrigerante\", \"preco\": 5.0} ] }"
+        }
+      }
+    },
+    {
+      "name": "Consultar status de um pedido",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:5000/status/1001"
+      }
+    },
+    {
+      "name": "Atualizar status de um pedido",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:5000/atualizar_status/1001"
+      }
+    },
+    {
+      "name": "Visualizar pedidos pendentes na cozinha",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:5000/cozinha"
+      }
+    },
+    {
+      "name": "Gerenciar clientes pelo painel administrativo",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:5000/admin/clientes"
+      }
+    },
+    {
+      "name": "Adicionar um novo produto",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:5000/admin/produtos",
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"categoria\": \"Lanche\", \"produto\": {\"id\": 9, \"nome\": \"Veggie Burger\", \"descricao\": \"Hambúrguer vegetariano\", \"preco\": 18.0} }"
+        }
+      }
+    },
+    {
+      "name": "Acompanhar pedidos pelo painel administrativo",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:5000/admin/pedidos"
+      }
+    }
+  ]
+}
