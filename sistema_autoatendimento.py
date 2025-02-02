@@ -91,5 +91,26 @@ def pedidos_cozinha():
     pedidos_pendentes = {pid: info for pid, info in pedidos.items() if info["status"] != "Finalizado"}
     return jsonify(pedidos_pendentes), 200
 
+@app.route("/admin/clientes", methods=["GET"])
+def gerenciar_clientes():
+    return jsonify(clientes), 200
+
+@app.route("/admin/produtos", methods=["POST", "PUT", "DELETE"])
+def gerenciar_produtos():
+    data = request.json
+    if request.method == "POST":
+        categoria = data["categoria"]
+        if categoria in produtos:
+            produtos[categoria].append(data["produto"])
+        return jsonify({"message": "Produto adicionado"}), 201
+    elif request.method == "PUT":
+        return jsonify({"message": "Funcionalidade de edição pendente"}), 501
+    elif request.method == "DELETE":
+        return jsonify({"message": "Funcionalidade de remoção pendente"}), 501
+
+@app.route("/admin/pedidos", methods=["GET"])
+def acompanhar_pedidos():
+    return jsonify(pedidos), 200
+
 if __name__ == "__main__":
     app.run(debug=True)
