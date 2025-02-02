@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  sistema_autoatendimento:
+    build: .
+    container_name: sistema_autoatendimento
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_ENV=development
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    container_name: db_autoatendimento
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: autoatendimento
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
